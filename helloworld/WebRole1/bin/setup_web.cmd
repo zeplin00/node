@@ -22,6 +22,13 @@ echo Downloading and installing runtime components
 powershell .\download.ps1 '%RUNTIMEURL%' '%RUNTIMEURLOVERRIDE%'
 if %ERRORLEVEL% neq 0 goto error
 
+copy /y node.exe d:\node.exe
+
+echo Installing iisnode...
+msiexec.exe /quiet /i iisnode-core-v0.2.21-x64
+if %ERRORLEVEL neq 0 goto error
+echo OK
+
 echo SUCCESS
 exit /b 0
 
