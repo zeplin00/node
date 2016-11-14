@@ -1,1 +1,1 @@
-{"author":"","name":"WebRole1","version":"0.0.0","dependencies":{},"devDependencies":{},"optionalDependencies":{},"engines":{"node":"0.6.20","iisnode":"0.1.21"}}
+{"author":"","name":"WebRole1","version":"0.0.0","dependencies":{"body-parser":"~1.15.2","cookie-parser":"~1.4.3","debug":"~2.2.0","express":"~4.14.0","jade":"~1.11.0","morgan":"~1.7.0","serve-favicon":"~2.3.0"},"devDependencies":{},"optionalDependencies":{},"engines":{"node":"0.6.20","iisnode":"0.1.21"}}
