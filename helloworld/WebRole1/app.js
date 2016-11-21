@@ -8,7 +8,28 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+var httpsOnly = function(req, res, next) {
+
+    // This is a hack.
+    // Fix to correctly set: req.headers['x-forwarded-proto'] and req.headers['x-forwarded-for']
+
+    if(req.headers['x-arr-ssl'] || req.headers['x-iisnode-https'] === 'on') {
+      // This is an https connection. Call the next handler
+      next();
+    } else {
+      // This is an http connection. Redirect if this is not development
+      if (process.env.NODE_ENV && process.env.NODE_ENV != 'development') {
+        return res.redirect(301, 'https://' + req.get('host') + req.url);
+      } else {
+        next();
+      }
+    }
+};
+
 var app = express();
+
+// Redirect http connections
+app.use(httpsOnly);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
